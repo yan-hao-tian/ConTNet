@@ -31,3 +31,21 @@ Note: <sup>*</sup> indicates training with strong augmentations.
 
 ## Main Results on Downstream Tasks
 
+Object detection results on COCO.
+
+| method  | backbone  | #params(M)  | FLOPs(G)  | AP    | AP</sup>s<sup>  | AP</sup>m<sup>  | AP</sup>l<sup>  |
+| ----    | ----      | ----        | ----      | ----  | --------        | -----           | -----           |
+|RetinaNet| Res-50 <br> ConTNet-M|  32.0 <br> 27.0  | 235.6 <br> 217.2  | 36.5 <br> **37.9**  | 20.4 <br> **23.0** | 40.3 <br> **40.6** | 48.1 <br> **50.4** |
+| FCOS    | Res-50 <br> ConTNet-M|  32.2 <br> 27.2  | 242.9 <br> 228.4  | 36.6 <br> **39.3**  | 21.0 <br> **23.1** | 40.6 <br> **43.1** | 47.0 <br> **51.9** |
+| faster rcnn | Res-50 <br> ConTNet-M|  41.5 <br> 36.6  | 241.0 <br> 225.6  | 37.4 <br> **40.0**  | 21.2 <br> **25.4** | 41.0 <br> **43.0** | 48.1 <br> **52.0** |
+  
+Instance segmentation results on Cityscapes based on Mask-RCNN.
+| backbone  | AP<sup>bb</sup> | AP<sub>s</sub><sup>bb</sup> | AP<sub>m</sub><sup>bb</sup> | AP<sub>l</sub><sup>bb</sup> | AP<sup>mk</sup> | AP<sub>s</sub><sup>mk</sup> | AP<sub>m</sub><sup>mk</sup> | AP<sub>l</sub><sup>mk</sup> |
+| ----      | ----    | ----  | ----  | ----  | ----  | ----  | ----  | ----  |
+| Res-50 <br> ConT-M  | 38.2 <br> **40.5**  | 21.9 <br> **25.1**  | 40.9 <br> **44.4** | 49.5 <br> **52.7** | 34.7 <br> **38.1** | 18.3 <br> **20.9** | 37.4 <br> **41.0** | 47.2 <br> **50.3** |
+
+Semantic segmentation results on cityscapes.
+| model | mIOU  |
+| ----- | ----  |
+|PSP-Res50| 77.12 |
+|PSP-ConTM| **78.28** |
