@@ -49,3 +49,13 @@ Semantic segmentation results on cityscapes.
 | ----- | ----  |
 |PSP-Res50| 77.12 |
 |PSP-ConTM| **78.28** |
+
+Bib Citing 
+```
+@article{yan2021contnet,
+    title={ConTNet: Why not use convolution and transformer at the same time?},
+    author={Haotian Yan and Zhe Li and Weijian Li and Changhu Wang and Ming Wu and Chuang Zhang},
+    year={2021},
+    journal={arXiv preprint arXiv:2104.13497}
+}
+```
