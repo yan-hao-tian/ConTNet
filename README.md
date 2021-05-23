@@ -7,7 +7,7 @@
 
 **ConTNet** (**Con**vlution-**T**ranformer Network) is a neural network built by stacking convolutional layers and transformers alternately. This architecture is proposed in response to the following two issues: **(1)** The receptive field of convolution is limited by a local window ($3 \times 3$), which potentially impairs the performance of ConvNets on downstream tasks. **(2)** Transformer-based models suffers from insufficient robustness, as a result, the training course requires multiple training tricks and tons of regularization strategies. In our ConTNet, these drawbacks are alleviated through the combination of convolution and transformer. Two perspectives are offered to understand the motivation. **From the view of ConvNet**, the transformer sub-layer is inserted between any two conv layers to enhance the non-local interactions of ConvNet. **From the view of Transformer**, the presence of convolution layers reintroduces the inductive bias as a cause of under-fitting. Through numerical experiments, we find that ConTNet achieves competitive performance on image recognition and downstream tasks. More notably, ConTNet can be optimized easily even in the same way as ResNet.
 <!-- ![image](https://user-images.githubusercontent.com/81896692/119272384-2b904e00-bc38-11eb-87a5-193275cc8be2.png) -->
-![image](https://github.com/yan-hao-tian/ConTNet/blob/main/arch2.png){:height="10%" width="10%"}
+![image](https://github.com/yan-hao-tian/ConTNet/blob/main/arch3.png){:height="10%" width="10%"}
 ![image](https://github.com/yan-hao-tian/ConTNet/blob/main/block2.png){:height="10%" width="10%"}
 ![image](https://github.com/yan-hao-tian/ConTNet/blob/main/block3.png){:height="10%" width="10%"}
 ## Training & Validation with this repo
