@@ -13,11 +13,14 @@ We give an example of one machine multi-gpus training.
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch --nproc_per_node=4 --master_port 29501 main.py --arch ConT-M --batch_size 256 --save_path debug_trial --save_best True 
 ```
-To validate a model, add the arg ```--eval ```.
+To validate a model, please add the arg ```--eval ```.
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch --nproc_per_node=4 --master_port 29501 main.py --arch ConT-M --batch_size 256 --save_path debug_trial --save_best True --eval ./debug_trial/checkpoint_bestTop1.pth
+CUDA_VISIBLE_DEVICES=0 python3 -m torch.distributed.launch --nproc_per_node=1 --master_port 29501 main.py --arch ConT-M --batch_size 256 --save_path debug_trial --eval ./debug_trial/checkpoint_bestTop1.pth
 ```
-
+To implement resume training, please add the arg ```--resume```.
+```
+CUDA_VISIBLE_DEVICES=0 python3 -m torch.distributed.launch --nproc_per_node=1 --master_port 29501 main.py --arch ConT-M --batch_size 256 --save_path debug_trial --save_best True --resume ./debug_trial/checkpoint_bestTop1.pth
+```
 ## Main Results on ImageNet
 
 |  name   |   resolution  |   acc@1   |   #params(M) |   FLOPs(G)   |   model   |
