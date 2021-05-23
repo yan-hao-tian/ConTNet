@@ -30,7 +30,7 @@
 |   DeiT-B<sup>*</sup>  |   224x224 |  **81.8** |   86.6    |   17.6|       |
 |   ConT-B<sup>*</sup>  |   224x224 |  **81.8** |   39.6    |   6.4 |       |
 
-Note: <sup>*</sup> indicates training with strong augmentations.
+Note: <sup>*</sup> indicates training with strong augmentations(auto-augmentation and mixup).
 
 ## Main Results on Downstream Tasks
 
