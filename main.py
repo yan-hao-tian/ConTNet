@@ -48,7 +48,7 @@ def parse_args():
     parser.add_argument('--epoch', default=200, type=int, 
                         help='number of total epochs to run')
     parser.add_argument('--warmup_epoch', default=10, type=int,
-                        help='the num of epochs')
+                        help='the num of warmup epochs')
     parser.add_argument('--resume', default=None, type=str, 
                         help='resume file path')
     parser.add_argument('--init_lr', default=5e-4, type=float, 
