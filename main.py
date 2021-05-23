@@ -251,7 +251,7 @@ def main(config):
     
 
 if __name__ == '__main__':
-    # build configa
+    # build configs
     args = parse_args()
     # launch
     main(config=args)
