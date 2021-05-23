@@ -99,7 +99,6 @@ class ConvBN(nn.Sequential):
 class MHSA(nn.Module):
     r"""
     Build a Multi-Head Self-Attention:
-        - https://github.com/microsoft/Swin-Transformer/blob/main/models/swin_transformer.py
         - https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/vision_transformer.py
     """
     def __init__(self,
@@ -300,11 +299,11 @@ class ConTNet(nn.Module):
     Build a ConTNet backbone
     """
     def __init__(self, 
-                 block: nn.Module,
+                 block,
                  layers: List[int],
                  mlp_dim: List[int],
                  head_num: List[int],
-                 dropout: List[int],
+                 dropout: List[float],
                  in_channels: int=3,
                  inplanes: int=64,
                  num_classes: int=1000,
@@ -350,7 +349,7 @@ class ConTNet(nn.Module):
         elif first_embedding:
             self.layer0 = nn.Sequential(OrderedDict([
                 ('conv', nn.Conv2d(in_channels, inplanes, kernel_size=4, stride=4)),
-                ('norm', nn.LayerNorm())
+                ('norm', nn.LayerNorm(inplanes))
             ]))
         else:
             self.layer0 = nn.Sequential(OrderedDict([
@@ -441,6 +440,7 @@ class ConTNet(nn.Module):
 def create_ConTNet_Ti(kwargs):
     return ConTNet(block=ConTBlock, 
                    mlp_dim=[196, 392, 768, 768], 
+                   head_num=[1, 2, 4, 8],
                    dropout=[0,0,0,0], 
                    inplanes=48, 
                    layers=[1,1,1,1], 
@@ -450,6 +450,7 @@ def create_ConTNet_Ti(kwargs):
 def create_ConTNet_S(kwargs):
     return ConTNet(block=ConTBlock, 
                    mlp_dim=[256, 512, 1024, 1024], 
+                   head_num=[1, 2, 4, 8],
                    dropout=[0,0,0,0], 
                    inplanes=64, 
                    layers=[1,1,1,1], 
@@ -459,6 +460,7 @@ def create_ConTNet_S(kwargs):
 def create_ConTNet_M(kwargs):
     return ConTNet(block=ConTBlock, 
                    mlp_dim=[256, 512, 1024, 1024], 
+                   head_num=[1, 2, 4, 8],
                    dropout=[0,0,0,0], 
                    inplanes=64, 
                    layers=[2,2,2,2], 
@@ -468,6 +470,7 @@ def create_ConTNet_M(kwargs):
 def create_ConTNet_B(kwargs):
     return ConTNet(block=ConTBlock, 
                    mlp_dim=[256, 512, 1024, 1024], 
+                   head_num=[1, 2, 4, 8],
                    dropout=[0,0,0.1,0.1], 
                    inplanes=64, 
                    layers=[3,4,6,3], 
@@ -476,6 +479,13 @@ def create_ConTNet_B(kwargs):
 
 def build_model(arch, use_avgdown, relative, qkv_bias, pre_norm):
     type = arch.split('-')[-1]
-    func = f'create_ConTNet_{type}'
+    func = eval(f'create_ConTNet_{type}')
     kwargs = dict(use_avgdown=use_avgdown, relative=relative, qkv_bias=qkv_bias, pre_norm=pre_norm)
     return func(kwargs)
+
+if __name__ == "__main__":
+    model = build_model(arch='ConT-Ti', use_avgdown=True, relative=True, qkv_bias=True, pre_norm=True)
+    input = torch.Tensor(4, 3, 224, 224)
+    print(model)
+    out = model(input)
+    print(out.shape)
