@@ -10,7 +10,7 @@
 ![image](https://github.com/yan-hao-tian/ConTNet/blob/main/arch5.png)
 ![image](https://github.com/yan-hao-tian/ConTNet/blob/main/block2.png)
 ![image](https://github.com/yan-hao-tian/ConTNet/blob/main/block3.png)
-## Training & Validation with this repo
+## Training & Validation with this Repo
 We give an example of one machine multi-gpus training.
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch --nproc_per_node=4 --master_port 29501 main.py --arch ConT-M --batch_size 256 --save_path debug_trial_cont_m --save_best True 
@@ -23,6 +23,9 @@ To implement resume training, please add the arg ```--resume```.
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3 python3 -m torch.distributed.launch --nproc_per_node=4 --master_port 29501 main.py --arch ConT-M --batch_size 256 --save_path debug_trial --save_best True --resume ./debug_trial_cont_m/checkpoint_bestTop1.pth
 ```
+## Pretrained Weights on ImageNet
+ImageNet-pretrained weights are available from [Google Drive][1] or [Baidu Cloud][2](the code is 3k3s).
+
 ## Main Results on ImageNet
 
 |  name   |   resolution  |   acc@1   |   #params(M) |   FLOPs(G)   |   model   |
@@ -76,3 +79,6 @@ Semantic segmentation results on cityscapes.
     journal={arXiv preprint arXiv:2104.13497}
 }
 ```
+
+[1]: https://drive.google.com/drive/folders/1ZXu--Bis3LTYLjf2pkmDtZH0TjuWWamO?usp=sharing
+[2]: https://pan.baidu.com/s/1thKK36jTFln1KcAuEkzleg
